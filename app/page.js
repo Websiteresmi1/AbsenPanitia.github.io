@@ -263,7 +263,7 @@ export default function PublicLiveDashboard() {
           {/* Logo & Judul Event */}
           <div className="flex items-center gap-3 sm:gap-3.5">
             <img
-              src="/LOGO.png"
+              src="/AbsenPanitia.github.io/LOGO.png"
               alt="Logo"
               className="h-10 sm:h-11 w-auto max-w-[130px] sm:max-w-[170px] object-contain shrink-0 drop-shadow-sm"
             />

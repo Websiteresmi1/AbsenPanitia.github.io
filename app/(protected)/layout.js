@@ -73,7 +73,7 @@ export default function ProtectedLayout({ children }) {
         <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <img
-              src="/LOGO.png"
+              src="/AbsenPanitia.github.io/LOGO.png"
               alt="Logo"
               className="h-8 sm:h-9 w-auto max-w-[110px] sm:max-w-[140px] object-contain shrink-0"
             />

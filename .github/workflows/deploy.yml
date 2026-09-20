@@ -1,0 +1,48 @@
+name: Deploy Next.js to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+# Berikan izin menulis ke repositori untuk membuat/memperbarui branch gh-pages
+permissions:
+  contents: write
+
+# Batalkan run lama jika ada push baru ke main sebelum build selesai
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Next.js Static Export
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL || 'https://rluqudgfztpvjisidwww.supabase.co' }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJsdXF1ZGdmenRwdmppc2lkd3d3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk4MzEyMzgsImV4cCI6MjEwNTQwNzIzOH0.iI-PhOCDiboYq25V8FKR-VLuyKB0en0bSW1a1RVFsDc' }}
+        run: |
+          npm run build
+          touch out/.nojekyll
+
+      - name: Deploy to gh-pages branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: out
+          branch: gh-pages
+          clean: true

@@ -4,7 +4,7 @@ export const metadata = {
   title: 'Sistem Absensi Event Panitia APSMBI 2026',
   description: 'Aplikasi Absensi Real-time Panitia Event berbasis QR Code dan Supabase',
   icons: {
-    icon: '/LOGO.png',
+    icon: '/AbsenPanitia.github.io/LOGO.png',
   },
 };
 

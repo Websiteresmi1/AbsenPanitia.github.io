@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false, // Wajib false agar html5-qrcode tidak me-mount kamera ganda saat dev
+  output: 'export',
+  images: { unoptimized: true },
+  basePath: '/AbsenPanitia.github.io',
+  assetPrefix: '/AbsenPanitia.github.io/',
+  trailingSlash: true,
+  reactStrictMode: false,
   eslint: {
     ignoreDuringBuilds: true,
   },

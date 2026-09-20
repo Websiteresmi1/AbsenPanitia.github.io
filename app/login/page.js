@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
@@ -13,6 +13,14 @@ export default function LoginPage() {
   const [errorMsg, setErrorMsg] = useState('');
   const router = useRouter();
   const supabase = createClient();
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        router.push('/scan');
+      }
+    });
+  }, [router, supabase]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -62,7 +70,7 @@ export default function LoginPage() {
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
             <img
-              src="/LOGO.png"
+              src="/AbsenPanitia.github.io/LOGO.png"
               alt="Logo"
               className="h-14 sm:h-16 w-auto max-w-[200px] object-contain drop-shadow-sm"
             />
