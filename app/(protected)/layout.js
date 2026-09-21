@@ -68,26 +68,26 @@ export default function ProtectedLayout({ children }) {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
-      {/* Header Utama (Sembunyi saat Cetak/Print) */}
-      <header className="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-xs no-print">
-        <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
+      {/* Header Utama (Sticky saat scroll, Sembunyi saat Cetak/Print) */}
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs sm:shadow-sm no-print transition-all">
+        <div className="max-w-4xl mx-auto px-4 py-2.5 sm:py-3 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5 min-w-0">
             <img
               src="/AbsenPanitia.github.io/LOGO.png"
               alt="Logo"
-              className="h-8 sm:h-9 w-auto max-w-[110px] sm:max-w-[140px] object-contain shrink-0"
+              className="h-8 sm:h-9 w-auto max-w-[100px] sm:max-w-[140px] object-contain shrink-0"
             />
-            <div>
-              <h1 className="text-base font-bold text-slate-900 leading-tight">
+            <div className="min-w-0">
+              <h1 className="text-sm sm:text-base font-bold text-slate-900 leading-tight truncate">
                 Absensi Panitia
               </h1>
-              <p className="text-xs text-slate-500 truncate max-w-[170px] sm:max-w-xs">
+              <p className="text-[11px] sm:text-xs text-slate-500 truncate max-w-[140px] sm:max-w-xs">
                 {user?.email || 'Admin'}
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             <Link
               href="/"
               target="_blank"
@@ -102,9 +102,9 @@ export default function ProtectedLayout({ children }) {
               id="logout-btn"
               onClick={handleLogout}
               title="Keluar dari sesi admin"
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 rounded-lg transition-colors touch-target"
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs sm:text-sm font-medium text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 rounded-lg transition-colors touch-target"
             >
-              <LogOut className="w-4 h-4" />
+              <LogOut className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>Keluar</span>
             </button>
           </div>
